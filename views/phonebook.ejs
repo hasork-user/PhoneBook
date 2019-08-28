@@ -1,0 +1,36 @@
+<% include ./partials/header %>
+<div class="ui main text container">
+	<div class="ui huge message">
+		Welcome <%= user.username.toUpperCase() %>,
+	</div>
+	
+	<a class="positive ui button" href="/users/<%= user._id %>/addContact">Add Contact </a>
+	<table class="ui selectable teal table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Number</th>
+				<th>Email</th>
+				<th>Group</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<% user.contacts.forEach(function(contact){ %>
+		<tr>
+			<td><%= contact.name %></td>
+			<td><%= contact.number %></td>
+			<td><%= contact.email %></td>
+			<td><%= contact.groups %></td>
+			<td>
+				<form method="GET" action="/users/<%= user._id %>/edit/<%= contact._id %>">
+					<button class="ui button blue">Edit</button>
+				</form>
+				<form method="POST" action="/users/<%= user._id %>/delete/<%= contact._id %>?_method=DELETE">
+					<button class="ui button red">Delete</button>
+				</form>
+			</td>
+		<% }); %>
+	</tr>
+</table>
+</div>	
+<% include ./partials/footer %>

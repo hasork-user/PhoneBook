@@ -1,0 +1,31 @@
+<% include ./partials/header %>
+<div class="ui main text container">
+	<div class="ui middle aligned center aligned grid">
+		<div class="coloumn ui inverted segment">
+			<form class="ui large form" method="POST" action="/users/<%= id %>/addContact %>">
+				<div class="ui stacked segment">
+		<label>Name: </label>
+		<input type="text" name="contact[name]">
+		<label>Number: </label>
+		<input type="text" name="contact[number]">
+		<label>Email: </label>
+		<input type="email" name="contact[email]">
+		<label>Group: </label>
+		<select name="contact[groups]">
+			<% groups.forEach(function(group){ %>
+			<option value="<%= group.groupname %>"><%= group.groupname %></option>
+		<% }); %>
+		</select>
+		
+				<a href="/users/<%= id %>/addContact/addGroup">
+				Add New Group
+			</a><br>
+			<button class="ui right floated button blue">Add</button><br><br>
+	</div>
+	</form>
+		</div>
+	</div>
+	
+</div>
+	
+<% include ./partials/footer %>

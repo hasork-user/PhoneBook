@@ -1,0 +1,27 @@
+<% include ./partials/header %>
+<div class="ui main text container">
+	<div class="ui middle aligned center aligned grid">
+		<div class="coloumn ui inverted segment">
+			<form class="ui large form" method="POST" action="/users/<%= userid %>/edit/<%= contactid %>?_method=PUT">
+				<label>Name: </label>
+				<input type="text" name="contact[name]" value="<%= contact.name %>">
+				<label>Number: </label>
+				<input type="text" name="contact[number]" value="<%= contact.number %>">
+				<label>Email: </label>
+				<input type="email" name="contact[email]" value="<%= contact.email %>">
+				<label>Group: </label>
+				<select name="contact[groups]">
+					<% groups.forEach(function(group){ %>
+					<option value="<%= group.groupname %>"><%= group.groupname %></option>
+					<% }); %>
+				</select>
+				
+				<a href="/users/<%= userid %>/edit/<%= contactid %>/addGroup">
+					Add New Group
+				</a><br>
+				<button class="ui right floated blue button">Update</button>
+			</form>
+		</div>
+	</div>
+</div>
+<% include ./partials/footer %>
